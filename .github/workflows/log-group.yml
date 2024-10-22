@@ -1,0 +1,10 @@
+on: push
+
+jobs:
+  log-group:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "::group::Show environment variables"
+          printenv
+          echo "::endgroup"
