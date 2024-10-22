@@ -1,0 +1,10 @@
+on: push
+
+jobs:
+  mask:
+    runs-on: ubuntu-latest
+    env:
+      PASSWORD: "p@ssw0rd"
+    steps:
+      - run: echo "::add-mask::${PASSWORD}"
+      - run: echo "${PASSWORD}"
