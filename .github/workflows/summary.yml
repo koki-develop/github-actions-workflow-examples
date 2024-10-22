@@ -1,0 +1,25 @@
+on: push
+
+jobs:
+  summary:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "## Awesome Summary :rocket:" >> $GITHUB_STEP_SUMMARY
+          echo "- hoge" >> $GITHUB_STEP_SUMMARY
+          echo "- fuga" >> $GITHUB_STEP_SUMMARY
+
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            await core.summary
+              .addHeading('Test Results')
+              .addCodeBlock(generateTestResults(), "js")
+              .addTable([
+                [{data: 'File', header: true}, {data: 'Result', header: true}],
+                ['foo.js', 'Pass ✅'],
+                ['bar.js', 'Fail ❌'],
+                ['test.js', 'Pass ✅']
+              ])
+              .addLink('View staging deployment!', 'https://github.com')
+              .write()
