@@ -1,0 +1,17 @@
+on: push
+
+jobs:
+  manually-matrix:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            version: 20
+          - os: macos-latest
+            version: 18
+    runs-on: ${{ matrix.os }}
+    steps:
+      - run: echo "${RUNNER_OS}"
+      - run: echo "${VERSION}"
+        env:
+          VERSION: ${{ matrix.version }}
