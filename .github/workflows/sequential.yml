@@ -1,0 +1,17 @@
+on: push
+
+jobs:
+  first:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "First"
+  second:
+    needs: [first]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Second"
+  third:
+    needs: [second]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Third"
