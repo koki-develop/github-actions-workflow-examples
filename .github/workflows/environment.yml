@@ -1,0 +1,11 @@
+on: push
+
+jobs:
+  example:
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hoge=${HOGE}, fuga=${FUGA}"
+        env:
+          HOGE: ${{ vars.HOGE }}
+          FUGA: ${{ secrets.FUGA }}
