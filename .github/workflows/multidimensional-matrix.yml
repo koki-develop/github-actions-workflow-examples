@@ -1,0 +1,14 @@
+on: push
+
+jobs:
+  multidimensional-matrix:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        version: [18, 20]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - run: echo "${RUNNER_OS}"
+      - run: echo "${VERSION}"
+        env:
+          VERSION: ${{ matrix.version }}
